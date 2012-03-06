@@ -5,10 +5,6 @@ include TestHelpers
 
 module GraphiteMetric
   describe Plaintext do
-    before do
-      @timestamp = Time.now.to_i - 3600
-    end
-
     it "by default timestamp is current utc" do
       Plaintext.new.timestamp.must_equal utc_now
     end
