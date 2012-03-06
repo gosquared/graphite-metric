@@ -9,16 +9,6 @@ module GraphiteMetric
       @timestamp = Time.now.to_i - 3600
     end
 
-    describe "by default" do
-      it "timestamp is current utc" do
-        Plaintext.new.timestamp.must_equal utc_now
-      end
-    end
-
-    it "uses the graphite plaintext format when converted to string" do
-      "#{Plaintext.new("visitors", 2)}".must_equal "visitors 2 #{utc_now}"
-    end
-
     describe "from hash" do
       before do
         @hash = {
