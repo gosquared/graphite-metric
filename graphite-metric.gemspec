@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "graphite_metric/version"
+require "graphite-metric/version"
 
 Gem::Specification.new do |s|
-  s.name        = "graphite_metric"
+  s.name        = "graphite-metric"
   s.version     = GraphiteMetric::VERSION
   s.authors     = ["Gerhard Lazu"]
   s.email       = ["gerhard@lazu.co.uk"]
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{Generates strings that graphite understands}
   s.description = %q{Converts hashes and arrays into graphite plaintext format}
 
-  s.rubyforge_project = "graphite_metric"
+  #s.rubyforge_project = "graphite-metric"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

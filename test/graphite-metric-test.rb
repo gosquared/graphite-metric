@@ -1,5 +1,5 @@
 require_relative('./test_helper')
-require 'graphite_metric'
+require 'graphite-metric'
 
 describe GraphiteMetric do
   it "Plainext has an abbreviated form" do

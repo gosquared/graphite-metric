@@ -1,5 +1,5 @@
 require_relative '../test_helper'
-require 'graphite_metric/plaintext'
+require 'graphite-metric/plaintext'
 
 include TestHelpers
 

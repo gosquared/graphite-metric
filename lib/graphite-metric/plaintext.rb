@@ -1,4 +1,4 @@
-require 'graphite_metric/util'
+require 'graphite-metric/util'
 
 module GraphiteMetric
   Plaintext = Struct.new(:key, :value, :timestamp) do
