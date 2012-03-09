@@ -17,9 +17,6 @@ What is a `GraphiteMetric::Plaintext`?
      Struct,
      Enumerable,
      Object,
-     TestHelpers,
-     MiniTest::Expectations,
-     PP::ObjectMixin,
      Kernel,
      BasicObject]
 
