@@ -27,7 +27,7 @@ module TestHelpers
       {
         :key       => "my.metric",
         :timestamp => 1336559845,
-        :value     => 33.0
+        :value     => 0
       }
     ]
   end
@@ -41,7 +41,7 @@ module TestHelpers
       {
         :key       => "my.first.metric",
         :timestamp => 1336559725,
-        :value     => 10.0
+        :value     => 0
       },
       {
         :key       => "my.first.metric",
@@ -76,7 +76,7 @@ module TestHelpers
       "my.first.metric" => [
         {
           :timestamp => 1336559725,
-          :value     => 10.0
+          :value     => 0
         },
         {
           :timestamp => 1336559785,

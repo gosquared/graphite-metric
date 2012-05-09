@@ -36,18 +36,24 @@ module GraphiteMetric
         raw_headers, raw_metrics = raw.split("|")
 
         metric_name, from, to, step  = raw_headers.split(",")
-        
+
         current_step = 0
         raw_metrics.split(",").each do |raw_metric|
           @metrics << {
             :key       => metric_name,
             :timestamp => from.to_i + current_step,
-            :value     => Float(raw_metric)
+            :value     => float(raw_metric)
           }
           current_step += step.to_i
         end
       end
       self
+    end
+
+    def float(raw_metric)
+      Float(raw_metric)
+    rescue
+      0
     end
   end
 end
