@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Gerhard Lazu"]
   s.email       = ["gerhard@lazu.co.uk"]
   s.homepage    = ""
-  s.summary     = %q{Generates strings that graphite understands}
-  s.description = %q{Converts hashes and arrays into graphite plaintext format}
+  s.summary     = %q{Generates strings that graphite understands. Loads raw graphite data.}
+  s.description = %q{Converts hashes and arrays into graphite plaintext format. Creates hashes from graphite raw format.}
 
   #s.rubyforge_project = "graphite-metric"
 
