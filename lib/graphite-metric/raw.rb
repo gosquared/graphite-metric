@@ -1,5 +1,8 @@
+require 'graphite-metric/util'
+
 module GraphiteMetric
   class Raw
+    include Util
     attr_reader :raw, :metrics
 
     def initialize(raw)
@@ -35,7 +38,7 @@ module GraphiteMetric
       @raw.split("\n").each do |raw|
         raw_headers, raw_metrics = raw.split("|")
 
-        metric_name, from, to, step  = raw_headers.split(",")
+        metric_name, from, to, step  = extract_headers(raw_headers)
 
         current_step = 0
         raw_metrics.split(",").each do |raw_metric|
@@ -48,12 +51,6 @@ module GraphiteMetric
         end
       end
       self
-    end
-
-    def float(raw_metric)
-      Float(raw_metric)
-    rescue
-      0
     end
   end
 end

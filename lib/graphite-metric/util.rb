@@ -2,16 +2,20 @@ module GraphiteMetric
   module Util
     extend self
 
-    def from_hash(hash)
-      metric = new
-      members.each { |member| metric[member] = hash[member] if hash.has_key?(member) }
-      metric
+    def float(raw_metric)
+      Float(raw_metric)
+    rescue
+      0
     end
 
-    def from_array(array)
-      array.inject([]) do |result, hash|
-        result << from_hash(hash)
-      end
+    def extract_headers(raw_headers)
+      all_splits = raw_headers.split(",")
+      step = all_splits.pop
+      to = all_splits.pop
+      from = all_splits.pop
+      metric_name = all_splits.join(",")
+
+      [metric_name, from, to, step]
     end
   end
 end

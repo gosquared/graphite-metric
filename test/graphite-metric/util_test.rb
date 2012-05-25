@@ -1,60 +1,22 @@
 require_relative '../test_helper'
-require 'graphite-metric/plaintext'
+require 'graphite-metric/util'
 
 include TestHelpers
 
 module GraphiteMetric
-  describe Plaintext do
-    before do
-      @timestamp = Time.now.to_i - 3600
-    end
-
-    describe "from hash" do
-      before do
-        @hash = {
-          :key       => "visitors",
-          :value     => 2,
-          :timestamp => @timestamp
-        }
+  describe Util do
+    describe "extract_raw_headers" do
+      it "simple metrics" do
+        Util.extract_headers("my.metric,1336559725,1336559845,60").must_equal(
+          ["my.metric", "1336559725", "1336559845", "60"]
+        )
       end
 
-      it "can be built from a hash" do
-        "#{Plaintext.from_hash(@hash)}".must_equal "visitors 2 #{@timestamp}"
+      it "metrics with functions" do
+        Util.extract_headers("scale(summarize(my.metric,\"5min\"),0.2),1337772900,1337773500,300").must_equal(
+          ["scale(summarize(my.metric,\"5min\"),0.2)", "1337772900", "1337773500", "300"]
+        )
       end
-    end
-
-    describe "from array (of hashes)" do
-      before do
-        @array = [
-          {
-            :key       => "visitors",
-            :value     => 1,
-            :timestamp => @timestamp
-          },
-          {
-            :key   => "visitors",
-            :value => 5
-          }
-        ]
-        @graphite_metrics = Plaintext.from_array(@array)
-      end
-
-      it "returns an array" do
-        @graphite_metrics.must_be_instance_of Array
-        @graphite_metrics.size.must_equal 2
-      end
-
-      it "each element is a GraphiteMetric::Plaintext" do
-        @graphite_metrics.each { |graphite_metric| graphite_metric.must_be_instance_of GraphiteMetric::Plaintext }
-      end
-
-      it "converts into graphite plaintext format" do
-        @graphite_metrics.map(&:to_s).must_equal([
-          "visitors 1 #{@timestamp}",
-          "visitors 5 #{utc_now}"
-        ])
-      end
-
     end
   end
 end
