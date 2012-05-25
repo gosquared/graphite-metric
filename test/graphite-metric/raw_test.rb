@@ -34,5 +34,10 @@ module GraphiteMetric
       gmr = GraphiteMetric::Raw.new(multiple_metrics_raw)
       gmr.grouped_metrics.must_equal multiple_metrics_grouped
     end
+
+    it "understands metrics with functions" do
+      gmr = GraphiteMetric::Raw.new(metric_with_functions_raw)
+      gmr.metrics.must_equal metric_with_functions_converted
+    end
   end
 end

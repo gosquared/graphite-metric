@@ -103,4 +103,23 @@ module TestHelpers
       ]
     }
   end
+
+  def metric_with_functions_raw
+    @metric_with_functions_raw ||= File.read("#{BASE_PATH}/test/fixtures/metric_with_functions.txt")
+  end
+
+  def metric_with_functions_converted
+    [
+      {
+        :key       => "scale(summarize(my.metric, \"5min\"),0.2)",
+        :timestamp => 1337772900,
+        :value     => 19.6
+      },
+      {
+        :key       => "scale(summarize(my.metric, \"5min\"),0.2)",
+        :timestamp => 1337773200,
+        :value     => 23.6
+      }
+    ]
+  end
 end
