@@ -70,7 +70,7 @@ gmps.map(&:to_s)
 ### GraphiteMetric::Raw
 
 It supports single as well as multiple raw metrics (multiple targets).
-For simplicity's, all examples will use single metrics:
+For simplicity, all examples will use single metrics:
 
 ```ruby
 gmr = GraphiteMetric::Raw.new("my.metric,1336559725,1336559845,60|34.999,35.10,33.0")
