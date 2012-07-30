@@ -33,6 +33,31 @@ module GraphiteMetric
       end
     end
 
+    # It's most efficient to use the raw metrics directly.
+    # As of graphite 0.9.10, these values are available in the headers
+    # when using cactiStyle function:
+    # http://graphite.readthedocs.org/en/0.9.10/functions.html#graphite.render.functions.cactiStyle
+    def summary_metrics
+      return @summary if @summary
+
+      @summary = {}
+
+      @raw.split("\n").each do |raw|
+        raw_headers, raw_metrics = raw.split("|")
+
+        metric_name, from, to, step  = extract_headers(raw_headers)
+        metrics = raw_metrics.split(",").map { |v| float(v) }
+
+        @summary[metric_name] = {
+          :min => metrics.min,
+          :max => metrics.max,
+          :avg => float(metrics.reduce(:+) / metrics.size).round(3)
+        }
+      end
+
+      @summary
+    end
+
     def populate_from_raw
       @metrics = []
       @raw.split("\n").each do |raw|

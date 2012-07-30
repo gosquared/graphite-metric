@@ -32,6 +32,16 @@ module TestHelpers
     ]
   end
 
+  def single_metric_summarised
+    {
+      "my.metric" => {
+        :min => 0.000,
+        :max => 35.100,
+        :avg => 23.366
+      }
+    }
+  end
+
   def multiple_metrics_raw
     @multiple_metrics_raw ||= File.read("#{BASE_PATH}/test/fixtures/multiple_metrics.txt")
   end
@@ -69,6 +79,21 @@ module TestHelpers
         :value     => 3.50
       }
     ]
+  end
+
+  def multiple_metrics_summarised
+    {
+      "my.first.metric" => {
+        :min => 0.000,
+        :max => 9.210,
+        :avg => 5.848
+      },
+      "my.second.metric" => {
+        :min => 1.100,
+        :max => 3.500,
+        :avg => 2.533
+      }
+    }
   end
 
   def multiple_metrics_grouped

@@ -39,5 +39,17 @@ module GraphiteMetric
       gmr = GraphiteMetric::Raw.new(metric_with_functions_raw)
       gmr.metrics.must_equal metric_with_functions_converted
     end
+
+    describe "summarises" do
+      it "single metrics" do
+        gmr = GraphiteMetric::Raw.new(single_metric_raw)
+        gmr.summary_metrics.must_equal single_metric_summarised
+      end
+
+      it "multiple metrics" do
+        gmr = GraphiteMetric::Raw.new(multiple_metrics_raw)
+        gmr.summary_metrics.must_equal multiple_metrics_summarised
+      end
+    end
   end
 end
