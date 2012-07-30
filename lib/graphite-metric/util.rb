@@ -5,7 +5,7 @@ module GraphiteMetric
     def float(raw_metric)
       Float(raw_metric)
     rescue
-      0
+      0.0
     end
 
     def extract_headers(raw_headers)
