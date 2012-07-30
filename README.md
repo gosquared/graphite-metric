@@ -133,6 +133,14 @@ gmr.populate_from_raw
  @raw="my.metric,1336559725,1336559845,60|34.999,35.10,33.0\n">
 ```
 
+#### Metrics summary
+
+Calculated from the raw metrics:
+
+```ruby
+gmr.summary_metrics
+=> {"my.metric"=>{:min=>33.0, :max=>35.1, :avg=>34.366}}
+```
 
 
 ## Ruby 1.8
